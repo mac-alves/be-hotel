@@ -32,4 +32,4 @@ build/
 .vscode/
 
 ### confg db ###
-persistence.xml
+application.yml

@@ -12,6 +12,10 @@ public class Funcionario extends Pessoa {
 	private Double 	salario;
 	private String nivelAcesso;
 
+	public Funcionario() {
+		
+	}
+	
 	public Funcionario(
 			String nome, 
 			String cpf, 
@@ -75,6 +79,5 @@ public class Funcionario extends Pessoa {
 
 	public void setNivelAcesso(String nivelAcesso) {
 		this.nivelAcesso = nivelAcesso;
-	}
-	
+	}	
 }
