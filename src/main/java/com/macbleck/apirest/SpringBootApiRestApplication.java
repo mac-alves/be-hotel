@@ -46,7 +46,9 @@ public class SpringBootApiRestApplication implements CommandLineRunner {
 		reservaRepository.save(res1);
 		
 		res1.getHospedes().addAll(Arrays.asList(hosp1, hosp2, hosp3));
-		//res1.setFuncionario(func);
+		res1.setFuncionario(func);
+		
+		func.getReservas().add(res1);
 		
 		hosp1.getReservas().add(res1);
 		hosp2.getReservas().add(res1);
@@ -54,7 +56,7 @@ public class SpringBootApiRestApplication implements CommandLineRunner {
 		
 		hospedeRepository.saveAll(Arrays.asList(hosp1, hosp2, hosp3));
 		reservaRepository.save(res1);
-		
+		funcionarioRepository.save(func);		
 	}
 
 }
