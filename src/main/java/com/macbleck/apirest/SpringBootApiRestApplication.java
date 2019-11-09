@@ -7,8 +7,12 @@ import javax.persistence.Persistence;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.macbleck.apirest.domain.Apartamento;
 import com.macbleck.apirest.domain.Funcionario;
+import com.macbleck.apirest.domain.Hospedagem;
 import com.macbleck.apirest.domain.Hospede;
+import com.macbleck.apirest.domain.Reserva;
+import com.macbleck.apirest.domain.TipoApartamento;
 
 @SpringBootApplication
 public class SpringBootApiRestApplication {
@@ -38,12 +42,21 @@ public class SpringBootApiRestApplication {
 			"suite"
 			);
 		
+		TipoApartamento tipo = new TipoApartamento();
+		Apartamento apt = new Apartamento();
+		Reserva res = new Reserva();
+		Hospedagem hosm = new Hospedagem();
+		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("apirest-springboot");
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
 		em.persist(func);
 		em.persist(hos);
+		em.persist(tipo);
+		em.persist(apt);
+		em.persist(res);
+		em.persist(hosm);
 		em.getTransaction().commit();
 				
 	}
