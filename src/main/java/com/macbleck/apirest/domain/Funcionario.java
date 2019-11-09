@@ -6,15 +6,17 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.macbleck.apirest.domain.enums.CargoFuncionario;
+
 @Entity
 public class Funcionario extends Pessoa {
 	private static final long serialVersionUID = 1L;
 
 	private String matricula;
 	private String dataAdmissao;
-	private String cargo;
 	private Double 	salario;
 	private String nivelAcesso;
+	private Integer cargo;
 	
 	@OneToMany(mappedBy = "funcionario")
 	private List<Reserva> reservas = new ArrayList<Reserva>();
@@ -25,26 +27,21 @@ public class Funcionario extends Pessoa {
 
 	public Funcionario(
 			String nome, 
-			String cpf, 
-			String endereco, 
-			String telefone,
+			String cpf,
 			String dataNascimento,
 			String matricula, 
-			String dataAdmissao, 
-			String cargo, 
-			Double salario, 
+			String dataAdmissao,
+			Double salario,
+			CargoFuncionario cargo,
 			String nivelAcesso) {
 		
 		this.setNome(nome);
 		this.setCpf(cpf);
-		this.setEndereco(endereco);
-		this.setTelefone(telefone);
-		this.setDataNascimento(dataNascimento);
-		
+		this.setDataNascimento(dataNascimento);		
 		this.matricula = matricula;
 		this.dataAdmissao = dataAdmissao;
-		this.cargo = cargo;
 		this.salario = salario;
+		this.cargo = cargo.getCod();
 		this.nivelAcesso = nivelAcesso;
 	}
 
@@ -64,12 +61,12 @@ public class Funcionario extends Pessoa {
 		this.dataAdmissao = dataAdmissao;
 	}
 
-	public String getCargo() {
-		return cargo;
+	public CargoFuncionario getCargo() {
+		return CargoFuncionario.toEnum(cargo);
 	}
 
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+	public void setCargo(CargoFuncionario cargo) {
+		this.cargo = cargo.getCod();
 	}
 
 	public Double getSalario() {

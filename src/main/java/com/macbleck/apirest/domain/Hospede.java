@@ -31,16 +31,12 @@ public class Hospede extends Pessoa {
 	
 	public Hospede(
 			String nome, 
-			String cpf, 
-			String endereco, 
-			String telefone,
+			String cpf,
 			String dataNascimento,
 			String preferencia) {
 		
 		this.setNome(nome);
 		this.setCpf(cpf);
-		this.setEndereco(endereco);
-		this.setTelefone(telefone);
 		this.setDataNascimento(dataNascimento);
 		
 		this.preferencia = preferencia;

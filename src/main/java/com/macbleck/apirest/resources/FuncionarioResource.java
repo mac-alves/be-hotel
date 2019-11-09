@@ -1,7 +1,5 @@
 package com.macbleck.apirest.resources;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,13 +22,5 @@ public class FuncionarioResource {
 
 		Funcionario obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
-	}
-	
-	@RequestMapping(value="/new", method=RequestMethod.GET)
-	public ResponseEntity<?> create() {
-		Funcionario func = new Funcionario("dasd", "asd", "endereco", "telefone", "dataNascimento", "matricula", "dataAdmissao", "cargo", 2313.43, "nivelAcesso");
-		List<Funcionario> obj = service.create(func);
-		return ResponseEntity.ok().body(obj);
-	}
-	
+	}	
 }
