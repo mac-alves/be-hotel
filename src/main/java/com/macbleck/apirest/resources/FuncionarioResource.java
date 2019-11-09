@@ -1,7 +1,6 @@
 package com.macbleck.apirest.resources;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class FuncionarioResource {
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 
-		Optional<Funcionario> obj = service.buscar(id);
+		Funcionario obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	

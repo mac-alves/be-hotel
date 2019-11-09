@@ -15,8 +15,9 @@ public class FuncionarioService {
 	@Autowired
 	private FuncionarioRepository repo;
 	
-	public Optional<Funcionario> buscar(Integer id) {
-		return repo.findById(id);
+	public Funcionario buscar(Integer id) {
+		Optional<Funcionario> obj = repo.findById(id);
+		return obj.orElse(null);
 	}
 	
 	public List<Funcionario> create(Funcionario func) {

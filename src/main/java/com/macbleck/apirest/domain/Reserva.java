@@ -1,11 +1,16 @@
 package com.macbleck.apirest.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Reserva implements Serializable{
@@ -17,23 +22,24 @@ public class Reserva implements Serializable{
 	private String dataChegada;
 	private String dataReserva;
 	private String tempoEstadia;
-	private Hospede hospede;
-	private Funcionario funcionario;
 	private String tipoApartamento;
 	private Boolean statusReserva;
+	
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "reservas")
+	private List<Hospede> hospedes = new ArrayList<Hospede>();
+	
+	private Funcionario funcionario;
 	
 	public Reserva() {
 		
 	}
 
-	public Reserva(String dataChegada, String dataReserva, String tempoEstadia, Hospede hospede,
-			Funcionario funcionario, String tipoApartamento, Boolean statusReserva) {
+	public Reserva(String dataChegada, String dataReserva, String tempoEstadia, String tipoApartamento, Boolean statusReserva) {
 		super();
 		this.dataChegada = dataChegada;
 		this.dataReserva = dataReserva;
 		this.tempoEstadia = tempoEstadia;
-		this.hospede = hospede;
-		this.funcionario = funcionario;
 		this.tipoApartamento = tipoApartamento;
 		this.statusReserva = statusReserva;
 	}
@@ -62,12 +68,12 @@ public class Reserva implements Serializable{
 		this.tempoEstadia = tempoEstadia;
 	}
 
-	public Hospede getHospede() {
-		return hospede;
+	public List<Hospede> getHospedes() {
+		return hospedes;
 	}
 
-	public void setHospede(Hospede hospede) {
-		this.hospede = hospede;
+	public void setHospedes(List<Hospede> hospedes) {
+		this.hospedes = hospedes;
 	}
 
 	public Funcionario getFuncionario() {
