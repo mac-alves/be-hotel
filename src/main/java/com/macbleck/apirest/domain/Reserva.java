@@ -31,6 +31,7 @@ public class Reserva implements Serializable{
 	@ManyToMany(mappedBy = "reservas")
 	private List<Hospede> hospedes = new ArrayList<Hospede>();
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;

@@ -16,6 +16,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Pessoa implements Serializable{
@@ -32,6 +34,7 @@ public abstract class Pessoa implements Serializable{
 	@CollectionTable(name="telefone")
 	private Set<String> telefones = new HashSet<String>();
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	

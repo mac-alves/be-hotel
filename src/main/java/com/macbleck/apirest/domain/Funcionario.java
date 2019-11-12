@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.macbleck.apirest.domain.enums.CargoFuncionario;
 
 @Entity
@@ -18,6 +19,7 @@ public class Funcionario extends Pessoa {
 	private String nivelAcesso;
 	private Integer cargo;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "funcionario")
 	private List<Reserva> reservas = new ArrayList<Reserva>();
 
