@@ -1,11 +1,18 @@
 package com.macbleck.apirest.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Hospedagem implements Serializable {
@@ -14,7 +21,6 @@ public class Hospedagem implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Hospede hospede;
 	private Apartamento apartamento;
 	private String dataEntrada;
 	private String dataSaida;
@@ -22,14 +28,25 @@ public class Hospedagem implements Serializable {
 	private String obsHospedagem;
 	private Integer numPessoas;
 	
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "hospedagens")
+	private List<Hospede> hospedes = new ArrayList<Hospede>();
+	
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "hospedagens")
+	private List<Reserva> reservas = new ArrayList<Reserva>();
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "hospedagem")
+	private List<Apartamento> apartamentos = new ArrayList<Apartamento>();
+	
 	public Hospedagem() {
 		
 	}
 
-	public Hospedagem(Hospede hospede, Apartamento apartamento, String dataEntrada, String dataSaida,
+	public Hospedagem(Apartamento apartamento, String dataEntrada, String dataSaida,
 			Double valorHospedagem, String obsHospedagem, Integer numPessoas) {
 		super();
-		this.hospede = hospede;
 		this.apartamento = apartamento;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
@@ -37,13 +54,30 @@ public class Hospedagem implements Serializable {
 		this.obsHospedagem = obsHospedagem;
 		this.numPessoas = numPessoas;
 	}
+	
 
-	public Hospede getHospede() {
-		return hospede;
+	public List<Apartamento> getApartamentos() {
+		return apartamentos;
 	}
 
-	public void setHospede(Hospede hospede) {
-		this.hospede = hospede;
+	public void setApartamentos(List<Apartamento> apartamentos) {
+		this.apartamentos = apartamentos;
+	}
+
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
+	public List<Hospede> getHospedes() {
+		return hospedes;
+	}
+
+	public void setHospedes(List<Hospede> hospedes) {
+		this.hospedes = hospedes;
 	}
 
 	public Apartamento getApartamento() {

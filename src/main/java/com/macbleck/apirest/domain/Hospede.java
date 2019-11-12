@@ -25,6 +25,15 @@ public class Hospede extends Pessoa {
 	)
 	private List<Reserva> reservas = new ArrayList<Reserva>();
 	
+	@JsonBackReference
+	@ManyToMany
+	@JoinTable(
+			name = "hospede_hospedagem",
+			joinColumns = @JoinColumn(name="hospede_id"),
+			inverseJoinColumns = @JoinColumn(name="hospedagem_id")
+	)
+	private List<Hospedagem> hospedagens = new ArrayList<Hospedagem>();
+	
 	public Hospede () {
 		
 	}
@@ -40,6 +49,14 @@ public class Hospede extends Pessoa {
 		this.setDataNascimento(dataNascimento);
 		
 		this.preferencia = preferencia;
+	}
+
+	public List<Hospedagem> getHospedagens() {
+		return hospedagens;
+	}
+
+	public void setHospedagens(List<Hospedagem> hospedagens) {
+		this.hospedagens = hospedagens;
 	}
 
 	public String getPreferencia() {

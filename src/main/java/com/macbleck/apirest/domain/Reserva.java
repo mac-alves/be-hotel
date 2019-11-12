@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -24,7 +26,6 @@ public class Reserva implements Serializable{
 	private String dataChegada;
 	private String dataReserva;
 	private String tempoEstadia;
-	private String tipoApartamento;
 	private Boolean statusReserva;
 	
 	@JsonManagedReference
@@ -36,11 +37,24 @@ public class Reserva implements Serializable{
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 	
+	@ManyToOne
+	@JoinColumn(name="tipo_apt_id")
+	private TipoApartamento tipoApartamento;
+	
+	@JsonBackReference
+	@ManyToMany
+	@JoinTable(
+			name = "reserva_hospedagem",
+			joinColumns = @JoinColumn(name="reserva_id"),
+			inverseJoinColumns = @JoinColumn(name="hospedagem_id")
+	)
+	private List<Hospedagem> hospedagens = new ArrayList<Hospedagem>();
+
 	public Reserva() {
 		
 	}
 
-	public Reserva(String dataChegada, String dataReserva, String tempoEstadia, String tipoApartamento, Boolean statusReserva) {
+	public Reserva(String dataChegada, String dataReserva, String tempoEstadia, TipoApartamento tipoApartamento, Boolean statusReserva) {
 		super();
 		this.dataChegada = dataChegada;
 		this.dataReserva = dataReserva;
@@ -48,7 +62,15 @@ public class Reserva implements Serializable{
 		this.tipoApartamento = tipoApartamento;
 		this.statusReserva = statusReserva;
 	}
+	
+	public List<Hospedagem> getHospedagens() {
+		return hospedagens;
+	}
 
+	public void setHospedagens(List<Hospedagem> hospedagens) {
+		this.hospedagens = hospedagens;
+	}
+	
 	public String getDataChegada() {
 		return dataChegada;
 	}
@@ -89,11 +111,11 @@ public class Reserva implements Serializable{
 		this.funcionario = funcionario;
 	}
 
-	public String getTipoApartamento() {
+	public TipoApartamento getTipoApartamento() {
 		return tipoApartamento;
 	}
 
-	public void setTipoApartamento(String tipoApartamento) {
+	public void setTipoApartamento(TipoApartamento tipoApartamento) {
 		this.tipoApartamento = tipoApartamento;
 	}
 

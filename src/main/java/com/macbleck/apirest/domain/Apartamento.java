@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Apartamento implements Serializable  {
@@ -17,7 +21,15 @@ public class Apartamento implements Serializable  {
 	private Integer numeroApartamento;
 	private Integer andar;
 	private Boolean disponibilidade;
+	
+	@ManyToOne
+	@JoinColumn(name="tipo_apt_id")
 	private TipoApartamento tipoApartamento;
+	
+	@JsonManagedReference
+	@ManyToOne
+	@JoinColumn(name="hospedagem_id")
+	private Hospedagem hospedagem;
 	
 	public Apartamento () {
 		
