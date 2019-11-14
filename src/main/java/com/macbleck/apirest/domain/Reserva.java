@@ -29,13 +29,9 @@ public class Reserva implements Serializable{
 	private Boolean statusReserva;
 	
 	@JsonManagedReference
-	@ManyToMany(mappedBy = "reservas")
-	private List<Hospede> hospedes = new ArrayList<Hospede>();
-	
-	@JsonManagedReference
 	@ManyToOne
-	@JoinColumn(name="funcionario_id")
-	private Funcionario funcionario;
+	@JoinColumn(name="Hospede_id")
+	private Hospede hospede;
 	
 	@ManyToOne
 	@JoinColumn(name="tipo_apt_id")
@@ -95,20 +91,12 @@ public class Reserva implements Serializable{
 		this.tempoEstadia = tempoEstadia;
 	}
 
-	public List<Hospede> getHospedes() {
-		return hospedes;
+	public Hospede getHospede() {
+		return hospede;
 	}
 
-	public void setHospedes(List<Hospede> hospedes) {
-		this.hospedes = hospedes;
-	}
-
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setHospede(Hospede hospede) {
+		this.hospede = hospede;
 	}
 
 	public TipoApartamento getTipoApartamento() {

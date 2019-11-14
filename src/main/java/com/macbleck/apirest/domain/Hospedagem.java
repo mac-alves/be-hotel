@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -21,7 +23,6 @@ public class Hospedagem implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Apartamento apartamento;
 	private String dataEntrada;
 	private String dataSaida;
 	private Double valorHospedagem;
@@ -40,14 +41,18 @@ public class Hospedagem implements Serializable {
 	@OneToMany(mappedBy = "hospedagem")
 	private List<Apartamento> apartamentos = new ArrayList<Apartamento>();
 	
+	@JsonManagedReference
+	@ManyToOne
+	@JoinColumn(name="funcionario_id")
+	private Funcionario funcionario;
+	
 	public Hospedagem() {
 		
 	}
 
-	public Hospedagem(Apartamento apartamento, String dataEntrada, String dataSaida,
+	public Hospedagem(String dataEntrada, String dataSaida,
 			Double valorHospedagem, String obsHospedagem, Integer numPessoas) {
 		super();
-		this.apartamento = apartamento;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
 		this.valorHospedagem = valorHospedagem;
@@ -55,6 +60,13 @@ public class Hospedagem implements Serializable {
 		this.numPessoas = numPessoas;
 	}
 	
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
 
 	public List<Apartamento> getApartamentos() {
 		return apartamentos;
@@ -78,14 +90,6 @@ public class Hospedagem implements Serializable {
 
 	public void setHospedes(List<Hospede> hospedes) {
 		this.hospedes = hospedes;
-	}
-
-	public Apartamento getApartamento() {
-		return apartamento;
-	}
-
-	public void setApartamento(Apartamento apartamento) {
-		this.apartamento = apartamento;
 	}
 
 	public String getDataEntrada() {

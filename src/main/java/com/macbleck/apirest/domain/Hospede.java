@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -17,12 +18,7 @@ public class Hospede extends Pessoa {
 	private String preferencia;
 
 	@JsonBackReference
-	@ManyToMany
-	@JoinTable(
-			name = "reserva_hospede",
-			joinColumns = @JoinColumn(name="hospede_id"),
-			inverseJoinColumns = @JoinColumn(name="reserva_id")
-	)
+	@OneToMany(mappedBy = "hospede")
 	private List<Reserva> reservas = new ArrayList<Reserva>();
 	
 	@JsonBackReference

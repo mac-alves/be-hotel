@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.macbleck.apirest.domain.enums.CargoFuncionario;
+import com.macbleck.apirest.domain.enums.NivelAcesso;
 
 @Entity
 public class Funcionario extends Pessoa {
@@ -16,12 +17,12 @@ public class Funcionario extends Pessoa {
 	private String matricula;
 	private String dataAdmissao;
 	private Double 	salario;
-	private String nivelAcesso;
+	private Integer nivelAcesso;
 	private Integer cargo;
 	
 	@JsonBackReference
 	@OneToMany(mappedBy = "funcionario")
-	private List<Reserva> reservas = new ArrayList<Reserva>();
+	private List<Hospedagem> hospedagem = new ArrayList<Hospedagem>();
 
 	public Funcionario() {
 		
@@ -35,7 +36,7 @@ public class Funcionario extends Pessoa {
 			String dataAdmissao,
 			Double salario,
 			CargoFuncionario cargo,
-			String nivelAcesso) {
+			NivelAcesso nivelAcesso) {
 		
 		this.setNome(nome);
 		this.setCpf(cpf);
@@ -44,7 +45,7 @@ public class Funcionario extends Pessoa {
 		this.dataAdmissao = dataAdmissao;
 		this.salario = salario;
 		this.cargo = cargo.getCod();
-		this.nivelAcesso = nivelAcesso;
+		this.nivelAcesso = nivelAcesso.getCod();
 	}
 
 	public String getMatricula() {
@@ -79,19 +80,19 @@ public class Funcionario extends Pessoa {
 		this.salario = salario;
 	}
 
-	public String getNivelAcesso() {
-		return nivelAcesso;
+	public NivelAcesso getNivelAcesso() {
+		return NivelAcesso.toEnum(nivelAcesso);
 	}
 
-	public void setNivelAcesso(String nivelAcesso) {
-		this.nivelAcesso = nivelAcesso;
+	public void setNivelAcesso(NivelAcesso nivelAcesso) {
+		this.nivelAcesso = nivelAcesso.getCod();
 	}
 	
-	public List<Reserva> getReservas() {
-		return reservas;
+	public List<Hospedagem> getReservas() {
+		return hospedagem;
 	}
 
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
+	public void setReservas(List<Hospedagem> hospedagem) {
+		this.hospedagem = hospedagem;
 	}
 }
