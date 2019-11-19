@@ -1,27 +1,53 @@
 # Api REST SpringBoot
 
+## Requisitos
+* Tenha uma instancia do mysql instalada na sua maquina
+* Renomei o arquivo 
+```
+    src/main/resources/application-exemple.yml 
+```
+    para
+```
+    src/main/resources/application.yml 
+```
+* Crie um banco de dados chamado apirest_springboot
+* Altere os dados de usuario e senha de acesso ao mysql.
+
 ## Endpoints
 ```
-	/funcionarios/{id}
-	/reservas/{id}
-	/hospedes/{id}
+    GET - /funcionarios/{id}
+    POST - /funcionarios
+    PUT - /funcionarios/{id}
+    DELETE - /funcionarios/{id}
 	
 ```
 
-## Passos de funcionamento
+## Dados Necessarios para acriação de um funcionario
+```
+    {
+        	"nome":"Nome",
+        	"cpf":"345.345.345-65",
+        	"dataNascimento":"23-54-1998",
+        	"matricula":"34872",
+        	"dataAdmissao":"23-56-1345",
+        	"salario":12345.65,
+        	"cargo":2,
+        	"nivelAcesso":1
+    }
+	
+```
 
-* 1 - Ter funcionarios cadastrados
-* 2 - Ter tipos de apartamento cadastrados
-* 3 - Ter apartamentos cadastrados
+* Obs: cargo e nivelAcesso são parametros enumerados:
+    cargo:
+        1 - ATENDENTE
+	    2 - RECEPCIONISTA
+	    3 - MALEIRO
+	    4 - PORTEIRO
+	    5 - ZELADOR
+	    6 - GERENTE
 
-## Passos de funcionamento
-
-* 1 - O hospede faz o cadastro no sistema e faz uma reserva
-* 2 - O hospede vai ao hotel e faz chek-in (hospedagem), funcionario confirma os dados no sistema
-
-## Obs dos passos
-#### Passo 1
-* hospede informa os dados no sistema e relaiza o cadastro, logo apos pode fazer a reserva
-
-#### Passo 2
-* o funcionario vincula a hospedagem ao hospede e a reserva realizada por ele, alem dele mesmo.
+    nivelAcesso:
+        1 - ALPHA
+	    2 - BETA
+	    3 - GAMA
+	    4 - PRISMA
