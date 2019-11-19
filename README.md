@@ -11,7 +11,7 @@
     src/main/resources/application.yml 
 ```
 * Crie um banco de dados chamado apirest_springboot
-* Altere os dados de usuario e senha de acesso ao mysql.
+* Altere os dados de usuario e senha de acesso ao mysql no arquivo application.yml nas linhas 5 e 6 respectivamente.
 
 ## Endpoints
 ```
@@ -38,6 +38,7 @@
 ```
 
 * Obs: cargo e nivelAcesso são parametros enumerados:
+```
     cargo:
         1 - ATENDENTE
 	    2 - RECEPCIONISTA
@@ -51,3 +52,4 @@
 	    2 - BETA
 	    3 - GAMA
 	    4 - PRISMA
+```
