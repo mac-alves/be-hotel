@@ -19,7 +19,7 @@ public class HospedeResource {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Hospede obj = service.buscar(id);
+		Hospede obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}	
 }

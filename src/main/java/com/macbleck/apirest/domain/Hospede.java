@@ -9,7 +9,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Hospede extends Pessoa {
@@ -17,11 +17,11 @@ public class Hospede extends Pessoa {
 
 	private String preferencia;
 
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "hospede")
 	private List<Reserva> reservas = new ArrayList<Reserva>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name = "hospede_hospedagem",

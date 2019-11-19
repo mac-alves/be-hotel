@@ -15,9 +15,24 @@ public class FuncionarioService {
 	@Autowired
 	private FuncionarioRepository repo;
 	
-	public Funcionario buscar(Integer id){
+	public Funcionario find(Integer id){
 		Optional<Funcionario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! ID: " + id + ", Tipo: " + Funcionario.class.getName()));
-	}	
+	}
+	
+	public Funcionario insert(Funcionario func) {
+		func.setId(null);
+		return repo.save(func);
+	}
+	
+	public Funcionario update(Funcionario func) {
+		find(func.getId());		
+		return repo.save(func);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		repo.deleteById(id);
+	}
 }

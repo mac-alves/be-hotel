@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Apartamento implements Serializable  {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +24,6 @@ public class Apartamento implements Serializable  {
 	@JoinColumn(name="tipo_apt_id")
 	private TipoApartamento tipoApartamento;
 	
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="hospedagem_id")
 	private Hospedagem hospedagem;

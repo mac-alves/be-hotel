@@ -13,8 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Hospedagem implements Serializable {
@@ -29,19 +28,16 @@ public class Hospedagem implements Serializable {
 	private String obsHospedagem;
 	private Integer numPessoas;
 	
-	@JsonManagedReference
 	@ManyToMany(mappedBy = "hospedagens")
 	private List<Hospede> hospedes = new ArrayList<Hospede>();
 	
-	@JsonManagedReference
 	@ManyToMany(mappedBy = "hospedagens")
 	private List<Reserva> reservas = new ArrayList<Reserva>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "hospedagem")
 	private List<Apartamento> apartamentos = new ArrayList<Apartamento>();
 	
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;

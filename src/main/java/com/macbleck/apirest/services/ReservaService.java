@@ -15,7 +15,7 @@ public class ReservaService {
 	@Autowired
 	private ReservaRepository repo;
 	
-	public Reserva buscar(Integer id){
+	public Reserva find(Integer id){
 		Optional<Reserva> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! ID: " + id + ", Tipo: " + Reserva.class.getName()));

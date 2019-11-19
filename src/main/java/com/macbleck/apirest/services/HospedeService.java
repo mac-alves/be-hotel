@@ -15,7 +15,7 @@ public class HospedeService {
 	@Autowired
 	private HospedeRepository repo;
 	
-	public Hospede buscar(Integer id){
+	public Hospede find(Integer id){
 		Optional<Hospede> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! ID: " + id + ", Tipo: " + Hospede.class.getName()));

@@ -13,8 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Reserva implements Serializable{
@@ -28,7 +27,6 @@ public class Reserva implements Serializable{
 	private String tempoEstadia;
 	private Boolean statusReserva;
 	
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="Hospede_id")
 	private Hospede hospede;
@@ -37,7 +35,7 @@ public class Reserva implements Serializable{
 	@JoinColumn(name="tipo_apt_id")
 	private TipoApartamento tipoApartamento;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name = "reserva_hospedagem",
