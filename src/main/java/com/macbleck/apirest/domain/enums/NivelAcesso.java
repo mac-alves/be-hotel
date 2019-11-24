@@ -2,10 +2,10 @@ package com.macbleck.apirest.domain.enums;
 
 public enum NivelAcesso {
 
-	ALPHA(1, "Atendente"),
-	BETA(2, "Recepcionista"),
-	GAMA(3, "Maleiro"),
-	PRISMA(4, "Porteiro");
+	ALPHA(1, "Apha"),
+	BETA(2, "Beta"),
+	GAMA(3, "Gama"),
+	PRISMA(4, "Prisma");
 	
 	private Integer cod;
 	private String descricao;

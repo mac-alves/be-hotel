@@ -1,5 +1,17 @@
 # Api REST SpringBoot
 
+## Rodar em uma maquina linux
+* Passos a seguir:
+```
+	1 - Baixar o repositorio
+	2 - Descompactar no local desejado
+	3 - Entra na pasta do projeto
+	4 - Abrir o terminal na pasta e rodar o seginte comando
+		./mvnw spring-boot:run
+```
+
+* API ser��� executada em http://localhost:8080
+
 ## Requisitos
 * Tenha uma instancia do mysql instalada na sua maquina
 * Renomei o arquivo 
@@ -15,6 +27,7 @@
 
 ## Endpoints
 ```
+    GET - /funcionarios
     GET - /funcionarios/{id}
     POST - /funcionarios
     PUT - /funcionarios/{id}
